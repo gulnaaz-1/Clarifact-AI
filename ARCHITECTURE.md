@@ -10,19 +10,19 @@
 ┌──────────────────────────────────────────────────────────────────────────┐
 │                         FRONTEND (TypeScript/React)                      │
 │                                                                          │
-│  ┌────────────────┐  ┌──────────────┐  ┌────────────────┐              │
-│  │   Dashboard    │  │   Analyze    │  │   Feed View    │              │
-│  │  - Live Map    │  │  - Text Box  │  │  - Risk Feed   │              │
-│  │  - Statistics  │  │  - Results   │  │  - Heatmap     │              │
-│  │  - Trends      │  │  - Models    │  │  - Geo Data    │              │
-│  └────────────────┘  └──────────────┘  └────────────────┘              │
-│           │                  │                   │                      │
-│           └──────────────────┼───────────────────┘                      │
-│                              ▼                                          │
-│                   ┌─────────────────────┐                              │
-│                   │   HTTP Requests     │                              │
-│                   │  (FastAPI Client)   │                              │
-│                   └─────────────────────┘                              │
+│  ┌────────────────┐  ┌──────────────┐  ┌────────────────┐                │
+│  │   Dashboard    │  │   Analyze    │  │   Feed View    │                │
+│  │  - Live Map    │  │  - Text Box  │  │  - Risk Feed   │                │
+│  │  - Statistics  │  │  - Results   │  │  - Heatmap     │                │
+│  │  - Trends      │  │  - Models    │  │  - Geo Data    │                │
+│  └────────────────┘  └──────────────┘  └────────────────┘                │
+│           │                  │                   │                       │
+│           └──────────────────┼───────────────────┘                       │
+│                              ▼                                           │
+│                   ┌─────────────────────┐                                │
+│                   │   HTTP Requests     │                                │
+│                   │  (FastAPI Client)   │                                │
+│                   └─────────────────────┘                                │
 └──────────────────────────────────────────────────────────────────────────┘
                               │
                    ┌──────────▼──────────┐
@@ -35,103 +35,103 @@
           └─────────────────┘   └────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────┐
-│                      BACKEND (Python/FastAPI)                           │
+│                      BACKEND (Python/FastAPI)                            │
 │                                                                          │
-│  ┌────────────────────────────────────────────────────────────────┐   │
-│  │                      API LAYER                                │   │
-│  │  - AnalysisRequest Handler                                   │   │
-│  │  - Feed Endpoint                                             │   │
-│  │  - Models Info Endpoint                                      │   │
-│  │  - Error Handling & Logging                                  │   │
-│  └────────────────────────────────────────────────────────────────┘   │
-│                              │                                          │
-│  ┌──────────────────────────▼────────────────────────────────────┐   │
-│  │                    ML ENGINE                                  │   │
-│  │                                                               │   │
-│  │  ┌─────────────────────────────────────────────────────┐    │   │
-│  │  │ Content Analysis Pipeline                          │    │   │
-│  │  │                                                     │    │   │
-│  │  │  1. Text Preprocessing & Cleaning                  │    │   │
-│  │  │  2. Entity Extraction (spaCy NER)                  │    │   │
-│  │  │  3. Parallel Model Inference:                      │    │   │
-│  │  │     ├─ Fake News Detection (BERT)                  │    │   │
-│  │  │     ├─ Sentiment Analysis (RoBERTa)                │    │   │
-│  │  │     ├─ NLI Contradiction (RoBERTa)                 │    │   │
-│  │  │     └─ Embeddings (Sentence-Transformers)          │    │   │
-│  │  │  4. Risk Score Aggregation (Weighted Sum)          │    │   │
-│  │  │  5. Confidence Calculation                         │    │   │
-│  │  │  6. Result Formatting                              │    │   │
-│  │  └─────────────────────────────────────────────────────┘    │   │
-│  └──────────────────────────────────────────────────────────────┘   │
-│                              │                                          │
-│  ┌──────────────────────────▼────────────────────────────────────┐   │
-│  │                   NEWS FETCHING                               │   │
-│  │                                                               │   │
-│  │  ┌─────────────────┐  ┌──────────────────┐                  │   │
-│  │  │ Fetchers.py     │  │ Cache (5 min)    │                  │   │
-│  │  │                 │  │                  │                  │   │
-│  │  │ ├─ RSS Parsing  │  │ - Feed Results   │                  │   │
-│  │  │ ├─ Source Split │  │ - Timestamps     │                  │   │
-│  │  │ ├─ Dedup        │  │                  │                  │   │
-│  │  │ ├─ Cleaning     │  │                  │                  │   │
-│  │  │ └─ Error Handle │  │                  │                  │   │
-│  │  └─────────────────┘  └──────────────────┘                  │   │
-│  └──────────────────────────────────────────────────────────────┘   │
+│  ┌────────────────────────────────────────────────────────────────┐      │
+│  │                      API LAYER                                 │      │
+│  │  - AnalysisRequest Handler                                     │      │
+│  │  - Feed Endpoint                                               │      │
+│  │  - Models Info Endpoint                                        │      │
+│  │  - Error Handling & Logging                                    │      │
+│  └────────────────────────────────────────────────────────────────┘      │
+│                             │                                            │
+│  ┌──────────────────────────▼────────────────────────────────────┐       │
+│  │                    ML ENGINE                                  │       │
+│  │                                                               │       │
+│  │  ┌─────────────────────────────────────────────────────┐      │       │
+│  │  │ Content Analysis Pipeline                           │      │       │
+│  │  │                                                     │      │       │
+│  │  │  1. Text Preprocessing & Cleaning                   │      │       │
+│  │  │  2. Entity Extraction (spaCy NER)                   │      │       │
+│  │  │  3. Parallel Model Inference:                       │      │       │
+│  │  │     ├─ Fake News Detection (BERT)                   │      │       │
+│  │  │     ├─ Sentiment Analysis (RoBERTa)                 │      │       │
+│  │  │     ├─ NLI Contradiction (RoBERTa)                  │      │       │
+│  │  │     └─ Embeddings (Sentence-Transformers)           │      │       │
+│  │  │  4. Risk Score Aggregation (Weighted Sum)           │      │       │
+│  │  │  5. Confidence Calculation                          │      │       │
+│  │  │  6. Result Formatting                               │      │       │
+│  │  └─────────────────────────────────────────────────────┘      │       │
+│  └──────────────────────────────────────────────────────────────┘        │
+│                              │                                           │
+│  ┌──────────────────────────▼────────────────────────────────────┐       │
+│  │                   NEWS FETCHING                               │       │
+│  │                                                               │       │
+│  │  ┌─────────────────┐  ┌──────────────────┐                    │       │
+│  │  │ Fetchers.py     │  │ Cache (5 min)    │                    │       │
+│  │  │                 │  │                  │                    │       │
+│  │  │ ├─ RSS Parsing  │  │ - Feed Results   │                    │       │
+│  │  │ ├─ Source Split │  │ - Timestamps     │                    │       │
+│  │  │ ├─ Dedup        │  │                  │                    │       │
+│  │  │ ├─ Cleaning     │  │                  │                    │       │
+│  │  │ └─ Error Handle │  │                  │                    │       │
+│  │  └─────────────────┘  └──────────────────┘                    │       │
+│  └──────────────────────────────────────────────────────────────┘        │
 └──────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────┐
-│                         ML MODELS LAYER                                 │
-│                         (Lazy Loading)                                  │
+│                         ML MODELS LAYER                                  │
+│                         (Lazy Loading)                                   │
 │                                                                          │
-│  ┌──────────────────┐  ┌──────────────────┐  ┌────────────────────┐  │
-│  │ BERT Fake News   │  │ RoBERTa          │  │ RoBERTa NLI        │  │
-│  │ Detector         │  │ Sentiment        │  │ Contradiction      │  │
-│  │                  │  │                  │  │                    │  │
-│  │ Model:           │  │ Model:           │  │ Model:             │  │
-│  │ jy46604790/      │  │ cardiffnlp/      │  │ roberta-large-mnli │  │
-│  │ Fake-News-BERT   │  │ twitter-roberta  │  │                    │  │
-│  │                  │  │                  │  │                    │  │
-│  │ Output:          │  │ Output:          │  │ Output:            │  │
-│  │ REAL/FAKE (0-1)  │  │ POS/NEU/NEG      │  │ ENTAIL/CONTRA/etc  │  │
-│  └──────────────────┘  └──────────────────┘  └────────────────────┘  │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌────────────────────┐      │
+│  │ BERT Fake News   │  │ RoBERTa          │  │ RoBERTa NLI        │      │
+│  │ Detector         │  │ Sentiment        │  │ Contradiction      │      │
+│  │                  │  │                  │  │                    │      │
+│  │ Model:           │  │ Model:           │  │ Model:             │      │
+│  │ jy46604790/      │  │ cardiffnlp/      │  │ roberta-large-mnli │      │
+│  │ Fake-News-BERT   │  │ twitter-roberta  │  │                    │      │
+│  │                  │  │                  │  │                    │      │
+│  │ Output:          │  │ Output:          │  │ Output:            │      │
+│  │ REAL/FAKE (0-1)  │  │ POS/NEU/NEG      │  │ ENTAIL/CONTRA/etc  │      │
+│  └──────────────────┘  └──────────────────┘  └────────────────────┘      │
 │                                                                          │
-│  ┌──────────────────┐  ┌──────────────────┐                           │
-│  │ Sentence         │  │ spaCy NER        │                           │
-│  │ Embeddings       │  │ Entity Extract   │                           │
-│  │                  │  │                  │                           │
-│  │ Model:           │  │ Model:           │                           │
-│  │ all-MiniLM-      │  │ en_core_web_sm   │                           │
-│  │ L6-v2            │  │                  │                           │
-│  │                  │  │ Output:          │                           │
-│  │ Output:          │  │ PER/ORG/GPE/LOC  │                           │
-│  │ 384-dim vectors  │  │ Named Entities   │                           │
-│  └──────────────────┘  └──────────────────┘                           │
+│  ┌──────────────────┐  ┌──────────────────┐                              │
+│  │ Sentence         │  │ spaCy NER        │                              │
+│  │ Embeddings       │  │ Entity Extract   │                              │
+│  │                  │  │                  │                              │
+│  │ Model:           │  │ Model:           │                              │
+│  │ all-MiniLM-      │  │ en_core_web_sm   │                              │
+│  │ L6-v2            │  │                  │                              │
+│  │                  │  │ Output:          │                              │
+│  │ Output:          │  │ PER/ORG/GPE/LOC  │                              │
+│  │ 384-dim vectors  │  │ Named Entities   │                              │
+│  └──────────────────┘  └──────────────────┘                              │
 │                                                                          │
 └──────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────────────┐
-│                      DATA SOURCES LAYER                                 │
+│                      DATA SOURCES LAYER                                  │
 │                                                                          │
-│  ┌─────────────────────────────────────────────────────────────┐       │
-│  │           REPUTED NEWS SOURCES (High Credibility)          │       │
-│  │  BBC | Reuters | AP News | Guardian | NPR                  │       │
-│  └─────────────────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────────────────┐         │
+│  │           REPUTED NEWS SOURCES (High Credibility)           │         │
+│  │  BBC | Reuters | AP News | Guardian | NPR                   │         │
+│  └─────────────────────────────────────────────────────────────┘         │
 │                                                                          │
-│  ┌─────────────────────────────────────────────────────────────┐       │
-│  │        ENTERTAINMENT & TRENDING (Mixed Credibility)        │       │
-│  │  TMZ | Reddit News | Reddit World News | Google News       │       │
-│  └─────────────────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────────────────┐         │
+│  │        ENTERTAINMENT & TRENDING (Mixed Credibility)         │         │
+│  │  TMZ | Reddit News | Reddit World News | Google News        │         │
+│  └─────────────────────────────────────────────────────────────┘         │
 │                                                                          │
-│  ┌─────────────────────────────────────────────────────────────┐       │
-│  │      QUESTIONABLE SOURCES (Low Credibility Reference)      │       │
-│  │  Breitbart | InfoWars | Natural News                       │       │
-│  └─────────────────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────────────────┐         │
+│  │      QUESTIONABLE SOURCES (Low Credibility Reference)       │         │
+│  │  Breitbart | InfoWars | Natural News                        │         │
+│  └─────────────────────────────────────────────────────────────┘         │
 │                                                                          │
-│  ┌─────────────────────────────────────────────────────────────┐       │
-│  │              OPTIONAL API SOURCES                          │       │
-│  │  NewsAPI (requires free API key)                          │       │
-│  │  Wikipedia (evidence verification)                         │       │
-│  └─────────────────────────────────────────────────────────────┘       │
+│  ┌─────────────────────────────────────────────────────────────┐         │
+│  │              OPTIONAL API SOURCES                           │         │
+│  │  NewsAPI (requires free API key)                            │         │
+│  │  Wikipedia (evidence verification)                          │         │
+│  └─────────────────────────────────────────────────────────────┘         │
 │                                                                          │
 └──────────────────────────────────────────────────────────────────────────┘
 
@@ -154,19 +154,19 @@ User Input (text)
          │
          ▼
 ┌──────────────────────────────────────────────────┐
-│ Parallel Model Inference (Async)                │
+│ Parallel Model Inference (Async)                 │
 │                                                  │
-│  ┌──────────────┐  ┌────────────┐  ┌─────────┐ │
-│  │ BERT (FAKE)  │  │ Sentiment  │  │ NLI     │ │
-│  │ ▼            │  │ ▼          │  │ ▼       │ │
-│  │ 0.75         │  │ 0.68       │  │ 0.42    │ │
-│  └──────────────┘  └────────────┘  └─────────┘ │
+│  ┌──────────────┐  ┌────────────┐  ┌─────────┐   │
+│  │ BERT (FAKE)  │  │ Sentiment  │  │ NLI     │   │
+│  │ ▼            │  │ ▼          │  │ ▼       │   │
+│  │ 0.75         │  │ 0.68       │  │ 0.42    │   │
+│  └──────────────┘  └────────────┘  └─────────┘   │
 │                                                  │
-│  ┌──────────────┐  ┌────────────┐              │
-│  │ Embeddings   │  │ NER        │              │
-│  │ ▼            │  │ ▼          │              │
-│  │ [vector]     │  │ GPE: USA   │              │
-│  └──────────────┘  └────────────┘              │
+│  ┌──────────────┐  ┌────────────┐                │
+│  │ Embeddings   │  │ NER        │                │
+│  │ ▼            │  │ ▼          │                │
+│  │ [vector]     │  │ GPE: USA   │                │
+│  └──────────────┘  └────────────┘                │
 └────────┬─────────────────────────────────────────┘
          │
          ▼
@@ -179,8 +179,8 @@ User Input (text)
 │        0.15×(1-0.8) +      │
 │        0.05×0.2            │
 │                            │
-│ = 0.26 + 0.17 + 0.08 +    │
-│   0.03 + 0.01 = 0.55      │
+│ = 0.26 + 0.17 + 0.08 +     │
+│   0.03 + 0.01 = 0.55       │
 └────────┬───────────────────┘
          │
          ▼
@@ -212,7 +212,7 @@ User Input (text)
                              │
           ┌──────────────────┼──────────────────┐
           │                  │                  │
-    (35%) │            (25%) │            (20%)│
+    (35%) │            (25%) │            (20%) │
           │                  │                  │
           ▼                  ▼                  ▼
       FAKE NEWS          SENSATIONALISM    CONTRADICTION
@@ -244,8 +244,8 @@ User Input (text)
                         └────┬─────┘
                              │
                         ┌────▼──────┐
-                        │            │
-                        ▼            ▼
+                        │           │
+                        ▼           ▼
                    AGGREGATED    FINAL RISK
                    COMPONENTS    SCORE (0-1)
                    
@@ -284,23 +284,23 @@ START
          ├─ YES ─────────────────────────┐
          │                               │
          ▼                               │
-    ┌──────────────────────────────┐   │
-    │ Download & Load Model        │   │
-    │ (30-60 seconds)              │   │
-    │ from HuggingFace Hub         │   │
-    └─────────┬────────────────────┘   │
-              │                         │
-              ▼                         │
-    ┌──────────────────────────────┐   │
-    │ Cache in Global Variable     │   │
-    │ _fake_news_clf = model       │   │
-    └─────────┬────────────────────┘   │
-              │                         │
+    ┌──────────────────────────────┐     │
+    │ Download & Load Model        │     │
+    │ (30-60 seconds)              │     │
+    │ from HuggingFace Hub         │     │
+    └─────────┬────────────────────┘     │
+              │                          │
+              ▼                          │
+    ┌──────────────────────────────┐     │
+    │ Cache in Global Variable     │     │
+    │ _fake_news_clf = model       │     │
+    └─────────┬────────────────────┘     │
+              │                          │
               └────────────┬────────────┘
                            │
-         ┌─ NO ───────────┘
-         │
-         ▼
+          ┌─ NO ───────────┘
+          │
+          ▼
     ┌──────────────────────────────┐
     │ Use Cached Model             │
     │ (instant)                    │
@@ -356,8 +356,8 @@ Try to Load Model
   └─ FAILURE ──────────────────────────┐
                                        │
                     Log Error Message  │
-                    Fall Back to      │
-                    Mock Mode         │
+                    Fall Back to       │
+                    Mock Mode          │
                     USE_MOCK_MODELS=True
                                        │
                                        ▼
@@ -392,6 +392,3 @@ Try to Load Model
 
 ---
 
-Created: November 2024  
-Architecture: Microservices with ML Pipeline
-Status: Production Ready
